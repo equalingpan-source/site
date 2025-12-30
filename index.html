@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RYOSUKE｜中小企業向けITコンサル（熊本）</title>
   <meta name="description" content="業務やITが少し複雑になってきたときの整理役。熊本を拠点に中小企業向けITコンサルティングを行っています。">
-
   <link rel="stylesheet" href="assets/style.css">
   <script defer src="assets/script.js"></script>
 </head>
@@ -13,21 +12,34 @@
 <body>
   <div class="container">
 
-    <header class="hero">
-      <h1 class="title">業務やITが少し複雑になってきたときの、整理役です。</h1>
-      <p class="lead">
-        熊本を拠点に、中小企業向けのITコンサルティングを行っています。<br>
-        まずは状況を整理して、「次に何をするか」を決めやすくします。
-      </p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#contact">30分相談（無料）</a>
+    <header class="topbar">
+      <div class="brand">
+        <a class="brand-link" href="./">RYOSUKE</a>
+        <span class="brand-sub">ITコンサル（熊本）</span>
       </div>
+      <nav class="nav">
+        <a href="./work/">案件</a>
+        <a href="./portfolio/">ポートフォリオ</a>
+        <a href="#contact">相談</a>
+      </nav>
     </header>
 
     <main>
+      <section class="hero">
+        <h1 class="title">業務やITが少し複雑になってきたときの、整理役です。</h1>
+        <p class="lead">
+          熊本を拠点に、中小企業向けのITコンサルティングを行っています。<br>
+          まずは状況を整理して、「次に何をするか」を決めやすくします。
+        </p>
 
-      <section class="section">
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">30分相談（無料）</a>
+          <a class="btn btn-secondary" href="./work/">案件メニューを見る</a>
+          <a class="btn btn-tertiary" href="./portfolio/">ポートフォリオを見る</a>
+        </div>
+      </section>
+
+      <section class="section" id="worries">
         <h2 class="h2">こんな状態、ありませんか？</h2>
         <ul class="list">
           <li>Excel・紙・口頭が混ざっていて、全体が見えにくい</li>
@@ -39,17 +51,40 @@
         <p class="text">ひとつでも当てはまれば、いきなり何かを決めなくても大丈夫です。</p>
       </section>
 
-      <section class="section">
+      <section class="section" id="what">
         <h2 class="h2">やっていること（ITの範囲）</h2>
         <p class="text">
-          ITやデータ、ツールまわりを中心に、状況を整理し、進め方を見える形にします。
+          ITやデータ、ツールまわりを中心に状況を整理し、進め方を見える形にします。
         </p>
-        <ul class="list">
-          <li>業務と情報の整理</li>
-          <li>ツール・データ設計の見直し</li>
-          <li>ベンダー提案・見積のレビュー</li>
-          <li>AI／自動化の可否整理（必須ではありません）</li>
-        </ul>
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="h3">整理</h3>
+            <p class="text">業務の流れ・情報の持ち方・詰まりを、まず言葉と図にします。</p>
+          </div>
+          <div class="card">
+            <h3 class="h3">設計</h3>
+            <p class="text">ツール選定やデータ項目など、あとで困りにくい形を作ります。</p>
+          </div>
+          <div class="card">
+            <h3 class="h3">レビュー</h3>
+            <p class="text">ベンダー提案や見積の内容を整理し、確認ポイントをまとめます。</p>
+          </div>
+          <div class="card">
+            <h3 class="h3">AI／自動化の可否</h3>
+            <p class="text">必要性と条件を整理して、選べる状態にします（必須ではありません）。</p>
+          </div>
+        </div>
+
+        <div class="link-cards">
+          <a class="link-card" href="./work/">
+            <div class="link-card-title">案件メニュー</div>
+            <div class="link-card-desc">単価と依頼の切り出し方</div>
+          </a>
+          <a class="link-card" href="./portfolio/">
+            <div class="link-card-title">ポートフォリオ</div>
+            <div class="link-card-desc">実績・制作物・考え方</div>
+          </a>
+        </div>
       </section>
 
       <section class="section" id="contact">
@@ -57,18 +92,19 @@
         <p class="text">
           具体的でなくても大丈夫です。ITの話として整理できるかどうかを、一度見てみます。
         </p>
+
         <div class="contact-box">
-          <a class="btn btn-primary" id="contactLink" href="#" target="_blank" rel="noopener">
-            相談フォームを開く
-          </a>
+          <a class="btn btn-primary" id="contactLink" href="#" target="_blank" rel="noopener">相談フォームを開く</a>
           <p class="fineprint">※フォームURLは後から差し替えできます</p>
         </div>
       </section>
-
     </main>
 
     <footer class="footer">
-      <p class="fineprint">© RYOSUKE</p>
+      <div class="footer-row">
+        <span class="fineprint">© RYOSUKE</span>
+        <span class="fineprint"><a href="./work/">案件</a> / <a href="./portfolio/">ポートフォリオ</a></span>
+      </div>
     </footer>
 
   </div>
