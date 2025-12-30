@@ -9,3 +9,21 @@ const SITE_CONFIG = {
     a.href = SITE_CONFIG.contactFormUrl;
   });
 })();
+
+/* =========================================================
+   スクロールでヘッダを縮める
+   ========================================================= */
+(function headerScrollEffect(){
+  const header = document.querySelector(".topbar");
+  if(!header) return;
+
+  const THRESHOLD = 60; // 何pxスクロールしたら縮めるか
+
+  window.addEventListener("scroll", () => {
+    if(window.scrollY > THRESHOLD){
+      header.classList.add("is-compact");
+    }else{
+      header.classList.remove("is-compact");
+    }
+  });
+})();
