@@ -1,189 +1,435 @@
-:root {
-  --text-main: #222;
-  --text-sub: #555;
-  --border: #e7e7e7;
-  --bg-light: #fafafa;
-  --accent: #1a73e8;
-  --radius: 10px;
+/* =========================================================
+   基本コンセプト
+   ---------------------------------------------------------
+   ・派手すぎないが、地味に見えない
+   ・余白／影／グラデーションで“仕事感”を出す
+   ・HTMLは増やさず、CSSだけで印象を底上げ
+   ========================================================= */
+
+
+/* =========================================================
+   1. カラーパレット・共通変数
+   ---------------------------------------------------------
+   色・角丸・影などはここを触るだけで全体が変わる
+   ========================================================= */
+:root{
+  /* 背景系 */
+  --bg:#ffffff;           /* ページ全体の背景 */
+  --surface:#ffffff;      /* カードなどの白背景 */
+  --muted:#f6f7fb;        /* 薄い背景 */
+  --muted2:#eef1f7;       /* さらに薄い背景 */
+
+  /* 文字色 */
+  --text:#111827;         /* メイン文字 */
+  --sub:#4b5563;          /* 補足・説明文 */
+
+  /* 枠線 */
+  --border:rgba(17,24,39,.10);
+
+  /* アクセントカラー（ブランド色） */
+  --accent:#2563eb;       /* 青 */
+  --accent2:#7c3aed;      /* 紫（グラデーション用） */
+
+  /* 角丸 */
+  --radius:14px;
+  --radius-sm:10px;
+
+  /* 影（立体感） */
+  --shadow-sm:0 6px 18px rgba(17,24,39,.08);
+  --shadow:0 12px 34px rgba(17,24,39,.10);
+
+  /* コンテンツ幅 */
+  --max:960px;
 }
 
-* { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-               "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
-  color: var(--text-main);
-  line-height: 1.8;
-  background: #fff;
+/* =========================================================
+   2. リセット・全体設定
+   ========================================================= */
+*{ box-sizing:border-box; }
+
+html{
+  scroll-behavior:smooth; /* ページ内リンクをなめらかに */
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+body{
+  margin:0;
 
-.container {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 28px 20px 48px;
+  /* 背景にうっすら色を入れて“のっぺり”回避 */
+  background:
+    radial-gradient(1200px 600px at 18% -10%, rgba(37,99,235,.10), transparent 55%),
+    radial-gradient(1000px 520px at 85% 0%, rgba(124,58,237,.10), transparent 55%),
+    var(--bg);
+
+  color:var(--text);
+
+  /* iOS / Mac で読みやすい日本語フォント */
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Noto Sans JP",
+    Meiryo,
+    sans-serif;
+
+  line-height:1.85;
+  letter-spacing:.01em;
 }
 
-/* Topbar */
-.topbar {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 0 22px;
-  border-bottom: 1px solid var(--border);
+
+/* =========================================================
+   3. リンクの基本挙動
+   ========================================================= */
+a{
+  color:var(--accent);
+  text-decoration:none;
+}
+a:hover{
+  text-decoration:underline;
 }
 
-.brand { display: flex; align-items: baseline; gap: 10px; }
-.brand-link {
-  font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: .02em;
-}
-.brand-sub { color: var(--text-sub); font-size: .92rem; }
 
-.nav { display: flex; gap: 14px; flex-wrap: wrap; }
-.nav a { color: var(--text-sub); }
-.nav a:hover { color: var(--text-main); text-decoration: none; }
-
-/* Typography */
-.title {
-  font-size: 1.9rem;
-  font-weight: 650;
-  margin: 0 0 14px;
+/* =========================================================
+   4. ページ全体のコンテナ
+   ========================================================= */
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:26px 18px 56px;
 }
 
-.h2 {
-  font-size: 1.35rem;
-  font-weight: 650;
-  margin: 0 0 14px;
+
+/* =========================================================
+   5. 上部ナビ（Topbar）
+   ---------------------------------------------------------
+   ・常に見える
+   ・名刺感を出す重要エリア
+   ========================================================= */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  padding:12px 14px;
+  margin:6px 0 22px;
+
+  /* 半透明＋ぼかしで“今っぽさ” */
+  background:rgba(255,255,255,.78);
+  border:1px solid var(--border);
+  border-radius:999px;
+
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 
-.h3 {
-  font-size: 1.05rem;
-  font-weight: 650;
-  margin: 0 0 8px;
+/* 左側：名前 */
+.brand{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  min-width:0;
 }
 
-.lead {
-  font-size: 1.05rem;
-  color: var(--text-main);
-  margin: 0 0 18px;
+.brand-link{
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:.03em;
+  white-space:nowrap;
 }
 
-.text { margin: 0 0 14px; color: var(--text-sub); }
-.fineprint { margin: 0; font-size: .92rem; color: var(--text-sub); }
-
-/* Layout blocks */
-.hero { padding: 28px 0 10px; }
-.hero.compact { padding-top: 18px; }
-
-.section { margin-top: 46px; }
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
+.brand-sub{
+  font-size:.92rem;
+  color:var(--sub);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-@media (min-width: 760px) {
-  .grid-2 { grid-template-columns: 1fr 1fr; }
+/* 右側：ナビリンク */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
 }
 
-.list {
-  padding-left: 20px;
-  margin: 0 0 14px;
-  color: var(--text-sub);
+.nav a{
+  color:var(--sub);
+  font-weight:600;
+  font-size:.95rem;
+  padding:6px 10px;
+  border-radius:999px;
 }
 
-.list li { margin-bottom: 7px; }
-
-/* Cards */
-.card {
-  background: var(--bg-light);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 16px;
+.nav a:hover{
+  text-decoration:none;
+  color:var(--text);
+  background:rgba(17,24,39,.05);
 }
 
-.price { font-weight: 650; color: var(--text-main); margin: 0 0 8px; }
 
-/* Link cards */
-.link-cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-top: 16px;
+/* =========================================================
+   6. 見出し・文章
+   ========================================================= */
+.title{
+  font-size:clamp(1.7rem, 3.6vw, 2.35rem);
+  font-weight:850;
+  line-height:1.25;
+  margin:0 0 12px;
 }
 
-@media (min-width: 760px) {
-  .link-cards { grid-template-columns: 1fr 1fr; }
+.h2{
+  font-size:clamp(1.2rem, 2.2vw, 1.45rem);
+  font-weight:850;
+  margin:0 0 14px;
 }
 
-.link-card {
-  display: block;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px 14px;
-  background: #fff;
+.h3{
+  font-size:1.05rem;
+  font-weight:800;
+  margin:0 0 8px;
 }
 
-.link-card:hover { text-decoration: none; border-color: #d8d8d8; }
-.link-card-title { font-weight: 650; color: var(--text-main); margin-bottom: 4px; }
-.link-card-desc { color: var(--text-sub); font-size: .95rem; }
-
-/* Buttons */
-.cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
-
-.btn {
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  border: 1px solid var(--border);
+.lead{
+  font-size:1.05rem;
+  color:var(--sub);
+  margin:0 0 18px;
+  max-width:48rem;
 }
 
-.btn-primary {
-  border-color: var(--accent);
-  color: #fff;
-  background: var(--accent);
+.text{
+  margin:0 0 14px;
+  color:var(--sub);
 }
 
-.btn-secondary {
-  background: #fff;
-  color: var(--accent);
-  border-color: var(--accent);
+.fineprint{
+  margin:0;
+  font-size:.92rem;
+  color:var(--sub);
 }
 
-.btn-tertiary {
-  background: #fff;
-  color: var(--text-sub);
-  border-color: var(--border);
+
+/* =========================================================
+   7. セクション・レイアウト
+   ========================================================= */
+.hero{
+  padding:22px 0 8px;
 }
 
-/* Steps / QA */
-.steps { margin: 0 0 14px; color: var(--text-sub); padding-left: 20px; }
-.steps li { margin-bottom: 7px; }
-
-.qa {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  margin: 12px 0;
-  background: #fff;
+.hero.compact{
+  padding-top:12px;
 }
-.qa summary { cursor: pointer; font-weight: 650; }
 
-/* Contact */
-.contact-box { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-
-/* Footer */
-.footer {
-  margin-top: 72px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
+.section{
+  margin-top:48px;
+  padding-top:8px;
 }
-.footer-row { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+
+
+/* =========================================================
+   8. リスト
+   ========================================================= */
+.list{
+  padding-left:20px;
+  margin:0 0 14px;
+  color:var(--sub);
+}
+
+.list li{
+  margin-bottom:8px;
+}
+
+
+/* =========================================================
+   9. グリッド（2カラム）
+   ========================================================= */
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+@media (min-width:760px){
+  .grid-2{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+
+/* =========================================================
+   10. カード（案件・実績など）
+   ========================================================= */
+.card{
+  background:
+    linear-gradient(180deg, var(--surface), rgba(255,255,255,.92));
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+
+  box-shadow:var(--shadow-sm);
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    border-color .15s ease;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow);
+  border-color:rgba(37,99,235,.18);
+}
+
+.price{
+  font-weight:800;
+  color:var(--text);
+  margin:0 0 8px;
+}
+
+
+/* =========================================================
+   11. リンクカード（トップ中段）
+   ========================================================= */
+.link-cards{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  margin-top:16px;
+}
+
+@media (min-width:760px){
+  .link-cards{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+.link-card{
+  display:block;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+
+  background:
+    radial-gradient(600px 220px at 20% 0%, rgba(37,99,235,.12), transparent 60%),
+    radial-gradient(520px 220px at 80% 0%, rgba(124,58,237,.10), transparent 60%),
+    var(--surface);
+
+  box-shadow:var(--shadow-sm);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.link-card:hover{
+  text-decoration:none;
+  transform:translateY(-2px);
+  box-shadow:var(--shadow);
+  border-color:rgba(37,99,235,.20);
+}
+
+.link-card-title{
+  font-weight:900;
+  color:var(--text);
+}
+
+.link-card-desc{
+  color:var(--sub);
+  font-size:.95rem;
+}
+
+
+/* =========================================================
+   12. ボタン
+   ========================================================= */
+.cta-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:10px 16px;
+  border-radius:999px;
+
+  font-size:.95rem;
+  font-weight:800;
+
+  border:1px solid var(--border);
+  transition:
+    transform .12s ease,
+    box-shadow .12s ease,
+    background .12s ease,
+    border-color .12s ease;
+}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg, var(--accent), var(--accent2));
+  border-color:rgba(37,99,235,.35);
+  box-shadow:0 14px 26px rgba(37,99,235,.22);
+}
+
+.btn-secondary{
+  background:#fff;
+  color:var(--accent);
+  border-color:rgba(37,99,235,.25);
+}
+
+.btn-tertiary{
+  background:#fff;
+  color:var(--sub);
+}
+
+
+/* =========================================================
+   13. 相談エリア
+   ========================================================= */
+.contact-box{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
+  padding:14px;
+
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+
+  background:
+    radial-gradient(700px 260px at 20% 0%, rgba(37,99,235,.10), transparent 60%),
+    rgba(255,255,255,.85);
+
+  box-shadow:var(--shadow-sm);
+}
+
+
+/* =========================================================
+   14. フッター
+   ========================================================= */
+.footer{
+  margin-top:74px;
+  padding-top:18px;
+  border-top:1px solid rgba(17,24,39,.10);
+}
+
+.footer-row{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+
+/* =========================================================
+   15. スマホ最適化
+   ========================================================= */
+@media (max-width:420px){
+  .btn{ width:100%; }
+  .topbar{ padding:10px 12px; }
+}
