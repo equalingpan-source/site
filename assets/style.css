@@ -433,3 +433,84 @@ a:hover{
   .btn{ width:100%; }
   .topbar{ padding:10px 12px; }
 }
+
+/* =========================================================
+   スマホ用：上部ナビの崩れ・ダサさ対策
+   ========================================================= */
+@media (max-width: 600px){
+
+  /* カプセル型を解除して自然なヘッダに */
+  .topbar{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+
+    border-radius: 14px;     /* 丸すぎ防止 */
+    padding: 14px;
+  }
+
+  /* 名前＋肩書きを縦並びに */
+  .brand{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  /* 文字切れを完全に防ぐ */
+  .brand-sub{
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 0.9rem;
+  }
+
+  /* ナビは横スクロールしない・均等配置 */
+  .nav{
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .nav a{
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    background: rgba(17,24,39,.04);
+  }
+}
+
+/* =========================================================
+   スクロール時にヘッダを縮める（共通）
+   ========================================================= */
+
+/* 通常状態（初期） */
+.topbar{
+  transition:
+    padding .25s ease,
+    border-radius .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+/* スクロール後の状態 */
+.topbar.is-compact{
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 18px rgba(17,24,39,.12);
+}
+
+/* ロゴ・文字も少し引き締める */
+.topbar.is-compact .brand-link{
+  font-size: 0.95rem;
+}
+
+.topbar.is-compact .brand-sub{
+  font-size: 0.8rem;
+}
+
+/* ナビも圧縮 */
+.topbar.is-compact .nav a{
+  padding: 4px 8px;
+  font-size: 0.85rem;
+}
