@@ -1,109 +1,80 @@
 /* =========================================================
-   style.css（差し替え版・コメント多め）
+   style.css（差し替え最終案：くすみブルー＋グレー比率UP）
    ---------------------------------------------------------
-   ねらい：u-d-l.jpの「静かで読みやすい」雰囲気に寄せる
-   - 色使い：白〜オフホワイト基調＋控えめアクセント
-   - トップ：余白をしっかり取り、読み物として心地よいヒーロー
-   - 背景：セクションに薄い面を敷いて“リズム”を作る
-   - フォント：行間・行長を整えて読みやすく
-   - スマホ：ヘッダ2段化で文字切れゼロ／押しやすい導線
-   - スクロール：ヘッダ縮小（JSが .topbar に is-compact を付け外し）
+   ねらい：
+   - Primary（CTA）を「くすみブルー」で統一（#334155系）
+   - グレーの“面”と“線”を増やして、全体を締める
+   - u-d-l.jp系の「静か・読みやすい・余白で魅せる」バランス
+   - スマホ：ヘッダ文字切れゼロ＋押しやすい導線
+   - スクロール：ヘッダ縮小（JSが .is-compact を付け外し）
    ---------------------------------------------------------
-   使い方：assets/style.css の中身を丸ごとこれに置換
+   使い方：assets/style.css を丸ごと置換
    ========================================================= */
 
 
 /* =========================================================
-   1) テーマ変数（デザインの“ツマミ”）
-   ---------------------------------------------------------
-   ここを触るだけで、全体の印象を一括で変えられます。
-   ・背景色
-   ・アクセント色
-   ・角丸
-   ・影（立体感）
+   1) テーマ変数（色・角丸・影の“ツマミ”）
    ========================================================= */
 :root{
-  /* 背景（真っ白より少し落ち着かせる） */
-  --bg: #fbfbfc;
+  /* base */
+  --bg: #f7f8fa;                 /* ほんのりグレー：白より締まる */
+  --surface: #ffffff;            /* カード・ヘッダ等のベース */
+  --surface2: #f1f3f6;           /* セクションの薄い面（グレー面を増やす） */
+  --surface3: #e9edf2;           /* さらに薄い区切り・ホバーなど */
 
-  /* 面（カードなどの“紙”） */
-  --surface: #ffffff;
+  /* text */
+  --text: #0f172a;               /* ほぼ黒（読みやすい） */
+  --sub: #475569;                /* グレー文字（青みがかった落ち着き） */
+  --muted: #64748b;              /* さらに薄い補助 */
 
-  /* セクション背景用の薄い面（白の中で区切りを作る） */
-  --surface2: rgba(17,24,39,.03);
+  /* border */
+  --border: rgba(15,23,42,.12);  /* 線を少し強めに：地味→締まる */
+  --border2: rgba(15,23,42,.18); /* 強調枠 */
 
-  /* 文字色（本文と補足） */
-  --text: #111827;
-  --sub: #4b5563;
+  /* accent（くすみブルー） */
+  --accent: #334155;             /* Primaryの核 */
+  --accent-hover: #475569;       /* hover */
+  --accent-weak: rgba(51,65,85,.10); /* うっすらアクセント面 */
 
-  /* 枠線（薄め） */
-  --border: rgba(17,24,39,.10);
-
-  /* アクセント（強すぎない：押し付け感を減らす） */
-  --accent: #2b5fff;   /* 青 */
-  --accent2: #6d47ff;  /* 紫（グラデ用） */
-
-  /* 角丸（少し大きめ＝柔らかいが幼くしない） */
+  /* radius / shadow（静か） */
   --radius: 16px;
   --radius-sm: 12px;
+  --shadow-sm: 0 10px 24px rgba(15,23,42,.06);
+  --shadow: 0 18px 44px rgba(15,23,42,.10);
 
-  /* 影（静かめ：主張を抑えつつ“のっぺり”を回避） */
-  --shadow-sm: 0 10px 24px rgba(17,24,39,.06);
-  --shadow: 0 18px 40px rgba(17,24,39,.08);
-
-  /* 横幅（本文が横に伸びすぎると読みにくい） */
+  /* layout */
   --max: 960px;
 }
 
 
 /* =========================================================
-   2) リセット・全体設定
-   ---------------------------------------------------------
-   ブラウザ差を減らす／読みやすさの基礎を作る
+   2) リセット・全体
    ========================================================= */
 *{ box-sizing:border-box; }
-
-html{
-  scroll-behavior:smooth; /* #anchor への移動をなめらかに */
-}
+html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
-
-  /* 背景：うっすら色を入れて“紙面感”を出す
-     - 強くやると派手になるので、透明度は低め */
-  background:
-    radial-gradient(1000px 500px at 10% -10%, rgba(43,95,255,.07), transparent 60%),
-    radial-gradient(900px 460px at 90% 0%, rgba(109,71,255,.06), transparent 60%),
-    var(--bg);
-
   color:var(--text);
 
-  /* iOS/Macで読みやすい日本語フォント群 */
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    "Noto Sans JP",
-    Meiryo,
-    sans-serif;
+  /* 背景：グレー基調＋うっすらアクセント */
+  background:
+    radial-gradient(1000px 520px at 12% -10%, rgba(51,65,85,.08), transparent 62%),
+    radial-gradient(900px 480px at 88% 0%, rgba(51,65,85,.06), transparent 62%),
+    var(--bg);
 
-  /* 本文を読み物として成立させる基本設定 */
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
   font-size:16px;
   line-height:1.9;
   letter-spacing:.01em;
 }
 
-/* リンク：青＋下線はホバー時のみ（うるさくしない） */
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
 
 /* =========================================================
-   3) コンテナ（中央揃え＋余白）
-   ---------------------------------------------------------
-   余白は“地味/派手”の体感に直結するので重要
+   3) コンテナ
    ========================================================= */
 .container{
   max-width:var(--max);
@@ -113,15 +84,10 @@ a:hover{ text-decoration:underline; }
 
 
 /* =========================================================
-   4) 上部ヘッダ（.topbar）
-   ---------------------------------------------------------
-   目的：
-   - 名刺のように「誰のサイトか」が即わかる
-   - ナビを迷わず押せる
-   - スクロールで少し縮んで邪魔にならない
+   4) ヘッダ（Topbar）
    ========================================================= */
 .topbar{
-  position:sticky; /* 画面上に固定 */
+  position:sticky;
   top:0;
   z-index:20;
 
@@ -133,15 +99,16 @@ a:hover{ text-decoration:underline; }
   padding:12px 14px;
   margin:6px 0 22px;
 
-  /* 半透明＋ブラー＝現代的だが、やりすぎない */
-  background:rgba(255,255,255,.86);
+  /* 白面＋薄い線＋軽い影 → “紙面感” */
+  background:rgba(255,255,255,.90);
   border:1px solid var(--border);
   border-radius:999px;
 
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
 
-  /* スクロール縮小でカクつかないように遷移 */
+  box-shadow: 0 6px 18px rgba(15,23,42,.05);
+
   transition:
     padding .25s ease,
     border-radius .25s ease,
@@ -149,7 +116,6 @@ a:hover{ text-decoration:underline; }
     background .25s ease;
 }
 
-/* 左側：名前＋肩書き */
 .brand{
   display:flex;
   align-items:baseline;
@@ -157,15 +123,13 @@ a:hover{ text-decoration:underline; }
   min-width:0;
 }
 
-/* 名前：太めで“軸” */
 .brand-link{
-  font-weight:800;
+  font-weight:820;
   color:var(--text);
   letter-spacing:.03em;
   white-space:nowrap;
 }
 
-/* 肩書き：補足なので弱く（ただし切れると信用が落ちるので後でスマホで解除） */
 .brand-sub{
   font-size:.92rem;
   color:var(--sub);
@@ -174,67 +138,54 @@ a:hover{ text-decoration:underline; }
   text-overflow:ellipsis;
 }
 
-/* 右側：ナビ */
 .nav{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
   justify-content:flex-end;
 }
 
-/* ナビ文字：ボタンっぽくしすぎず、押せる感は残す */
+/* ナビ：少し“面”を付ける（グレー比率UP） */
 .nav a{
   color:var(--sub);
   font-weight:650;
   font-size:.95rem;
   padding:6px 10px;
   border-radius:999px;
+
+  background:rgba(15,23,42,.03);
+  border:1px solid rgba(15,23,42,.06);
 }
+
 .nav a:hover{
   text-decoration:none;
   color:var(--text);
-  background:rgba(17,24,39,.05);
+  background:rgba(15,23,42,.06);
+  border-color:rgba(15,23,42,.10);
 }
 
-
-/* =========================================================
-   4-1) スクロールで縮む状態（.topbar.is-compact）
-   ---------------------------------------------------------
-   JSがスクロール量を見てこのクラスを付け外しします。
-   「上にいる時は余白多め」「読んでる時はコンパクト」
-   ========================================================= */
+/* スクロール後：さらに締める */
 .topbar.is-compact{
   padding:8px 12px;
   border-radius:14px;
-  background:rgba(255,255,255,.94);
-  box-shadow:0 10px 24px rgba(17,24,39,.08);
+  background:rgba(255,255,255,.96);
+  box-shadow:0 12px 24px rgba(15,23,42,.10);
 }
 
-/* 縮小時：ロゴ/肩書きを少し小さく */
 .topbar.is-compact .brand-link{ font-size:.95rem; }
 .topbar.is-compact .brand-sub{ font-size:.80rem; }
-
-/* 縮小時：ナビも圧縮 */
 .topbar.is-compact .nav a{ padding:4px 8px; font-size:.88rem; }
 
 
 /* =========================================================
-   5) タイポグラフィ（見出し・本文）
-   ---------------------------------------------------------
-   “読みやすさ”は
-   - サイズ
-   - 行間
-   - 行長（横に長すぎない）
-   で決まります。
+   5) タイポ
    ========================================================= */
 .title{
   font-size:clamp(1.75rem, 3.5vw, 2.35rem);
-  font-weight:850;
+  font-weight:860;
   line-height:1.22;
   margin:0 0 12px;
-
-  /* 行が長すぎると読みにくいので、意図的に幅制限 */
   max-width:20em;
 }
 
@@ -246,7 +197,7 @@ a:hover{ text-decoration:underline; }
 
 .h3{
   font-size:1.05rem;
-  font-weight:800;
+  font-weight:820;
   margin:0 0 8px;
 }
 
@@ -260,31 +211,21 @@ a:hover{ text-decoration:underline; }
 .text{
   margin:0 0 16px;
   color:var(--sub);
-
-  /* 説明文は読み物なので行長制限 */
   max-width:54rem;
 }
 
 .fineprint{
   margin:0;
   font-size:.92rem;
-  color:var(--sub);
+  color:var(--muted);
 }
 
 
 /* =========================================================
-   6) ヒーロー／セクション余白
-   ---------------------------------------------------------
-   ・余白が多いほど“丁寧”に見える
-   ・ただしやりすぎると間延びするので控えめに調整
+   6) ヒーロー／セクション
    ========================================================= */
-.hero{
-  padding:34px 0 14px;
-}
-
-.hero.compact{
-  padding-top:16px;
-}
+.hero{ padding:34px 0 14px; }
+.hero.compact{ padding-top:16px; }
 
 .section{
   margin-top:52px;
@@ -292,8 +233,7 @@ a:hover{ text-decoration:underline; }
   position:relative;
 }
 
-/* セクション背景（薄い面）：
-   すべてに適用するとクドいので “偶数だけ” */
+/* グレー面を増やす：偶数セクションに薄い面 */
 .section:nth-of-type(even)::before{
   content:"";
   position:absolute;
@@ -303,15 +243,29 @@ a:hover{ text-decoration:underline; }
   bottom:-18px;
 
   background:var(--surface2);
+  border:1px solid rgba(15,23,42,.06);
   border-radius:22px;
   z-index:-1;
+}
+
+/* さらに“締め”として、セクション見出しに下線をうっすら */
+.h2{
+  position:relative;
+  padding-bottom:6px;
+}
+.h2::after{
+  content:"";
+  display:block;
+  height:1px;
+  width:56px;
+  margin-top:10px;
+  background:rgba(15,23,42,.18);
+  border-radius:999px;
 }
 
 
 /* =========================================================
    7) リスト
-   ---------------------------------------------------------
-   ・箇条書きは“行間”が読みやすさを決める
    ========================================================= */
 .list{
   padding-left:20px;
@@ -319,16 +273,11 @@ a:hover{ text-decoration:underline; }
   color:var(--sub);
   max-width:54rem;
 }
-
-.list li{
-  margin-bottom:10px;
-}
+.list li{ margin-bottom:10px; }
 
 
 /* =========================================================
-   8) グリッド（2カラム）
-   ---------------------------------------------------------
-   PCで2列、スマホで1列
+   8) グリッド
    ========================================================= */
 .grid-2{
   display:grid;
@@ -341,38 +290,36 @@ a:hover{ text-decoration:underline; }
 
 
 /* =========================================================
-   9) カード（.card）
-   ---------------------------------------------------------
-   ・影は弱め（静かな印象）
-   ・hoverの動きも小さめ（“遊び”に見せない）
+   9) カード（グレー比率UP：線と面で整える）
    ========================================================= */
 .card{
-  background:linear-gradient(180deg, var(--surface), rgba(255,255,255,.95));
-  border:1px solid rgba(17,24,39,.08);
+  background:
+    linear-gradient(180deg, var(--surface), rgba(255,255,255,.96));
+  border:1px solid var(--border);
   border-radius:var(--radius);
   padding:16px;
 
   box-shadow:var(--shadow-sm);
-  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
 }
 
 .card:hover{
   transform:translateY(-1px);
   box-shadow:var(--shadow);
-  border-color:rgba(17,24,39,.12);
+  border-color:var(--border2);
+  background:
+    linear-gradient(180deg, #ffffff, rgba(241,243,246,.60));
 }
 
 .price{
-  font-weight:800;
+  font-weight:820;
   color:var(--text);
   margin:0 0 8px;
 }
 
 
 /* =========================================================
-   10) リンクカード（トップ中段）
-   ---------------------------------------------------------
-   目的：迷う人に“入口”をもう一段作る
+   10) リンクカード（入口：薄いアクセント面＋グレー）
    ========================================================= */
 .link-cards{
   display:grid;
@@ -386,16 +333,13 @@ a:hover{ text-decoration:underline; }
 
 .link-card{
   display:block;
-
-  border:1px solid rgba(17,24,39,.08);
+  border:1px solid var(--border);
   border-radius:var(--radius);
   padding:16px;
 
-  /* 背景にほんのり色：押せる感＆上品さ */
   background:
-    radial-gradient(600px 220px at 20% 0%, rgba(43,95,255,.10), transparent 62%),
-    radial-gradient(520px 220px at 80% 0%, rgba(109,71,255,.08), transparent 62%),
-    var(--surface);
+    radial-gradient(620px 240px at 20% 0%, var(--accent-weak), transparent 62%),
+    linear-gradient(180deg, var(--surface), rgba(241,243,246,.55));
 
   box-shadow:var(--shadow-sm);
   transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
@@ -405,7 +349,7 @@ a:hover{ text-decoration:underline; }
   text-decoration:none;
   transform:translateY(-1px);
   box-shadow:var(--shadow);
-  border-color:rgba(17,24,39,.12);
+  border-color:var(--border2);
 }
 
 .link-card-title{
@@ -413,7 +357,6 @@ a:hover{ text-decoration:underline; }
   color:var(--text);
   margin-bottom:4px;
 }
-
 .link-card-desc{
   color:var(--sub);
   font-size:.95rem;
@@ -421,10 +364,7 @@ a:hover{ text-decoration:underline; }
 
 
 /* =========================================================
-   11) ボタン（.btn）
-   ---------------------------------------------------------
-   ・primaryだけ少し華やか（相談導線）
-   ・secondary/tertiaryは“静か”に
+   11) ボタン（Primary=くすみブルー）
    ========================================================= */
 .cta-row{
   display:flex;
@@ -442,64 +382,67 @@ a:hover{ text-decoration:underline; }
 
   border-radius:999px;
   font-size:.95rem;
-  font-weight:800;
+  font-weight:780;
 
-  border:1px solid rgba(17,24,39,.10);
+  border:1px solid var(--border);
   background:rgba(255,255,255,.92);
+  color:var(--text);
 
-  transition:transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+  transition:transform .12s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
   user-select:none;
 }
+.btn:active{ transform:translateY(1px); }
 
-.btn:active{
-  transform:translateY(1px);
-}
-
-/* 相談ボタン：唯一“色で引っ張る” */
+/* Primary：くすみブルー単色（押し付け感が少ない） */
 .btn-primary{
-  color:#fff;
-  background:linear-gradient(135deg, var(--accent), var(--accent2));
-  border-color:rgba(43,95,255,.22);
-  box-shadow:0 16px 30px rgba(43,95,255,.18);
+  background:var(--accent);
+  color:#ffffff;
+  border-color:rgba(51,65,85,.85);
+  box-shadow:0 14px 26px rgba(51,65,85,.22);
 }
 .btn-primary:hover{
   text-decoration:none;
-  box-shadow:0 20px 38px rgba(43,95,255,.22);
+  background:var(--accent-hover);
+  box-shadow:0 18px 34px rgba(51,65,85,.26);
   transform:translateY(-1px);
 }
 
-/* サブ導線：落ち着いた枠 */
+/* Secondary：枠＋薄い面（グレー面増やす） */
 .btn-secondary{
+  background:rgba(15,23,42,.04);
   color:var(--accent);
-  border-color:rgba(43,95,255,.18);
+  border-color:rgba(51,65,85,.22);
 }
 .btn-secondary:hover{
   text-decoration:none;
-  border-color:rgba(43,95,255,.28);
+  background:rgba(15,23,42,.06);
   box-shadow:var(--shadow-sm);
   transform:translateY(-1px);
 }
 
-/* さらに控えめ */
+/* Tertiary：さらに控えめ */
 .btn-tertiary{
+  background:transparent;
   color:var(--sub);
+  border-color:rgba(15,23,42,.12);
 }
 .btn-tertiary:hover{
   text-decoration:none;
-  box-shadow:var(--shadow-sm);
+  background:rgba(15,23,42,.04);
+  box-shadow:0 8px 18px rgba(15,23,42,.08);
   transform:translateY(-1px);
 }
 
 
 /* =========================================================
-   12) QA（details/summary用：今後使う場合）
+   12) QA（details/summary）※使っていれば有効
    ========================================================= */
 .qa{
-  border:1px solid rgba(17,24,39,.08);
+  border:1px solid var(--border);
   border-radius:var(--radius);
   padding:12px 14px;
   margin:12px 0;
-  background:rgba(255,255,255,.90);
+  background:rgba(255,255,255,.92);
   box-shadow:var(--shadow-sm);
 }
 .qa summary{
@@ -511,10 +454,7 @@ a:hover{ text-decoration:underline; }
 
 
 /* =========================================================
-   13) 相談ブロック（contact）
-   ---------------------------------------------------------
-   ・“相談”は目立つべきだが、派手すぎると営業臭が出る
-   ・薄い面＋控えめな色で存在感を作る
+   13) 相談ブロック（グレー比率UP＋CTAを引き立てる）
    ========================================================= */
 .contact-box{
   display:flex;
@@ -523,12 +463,12 @@ a:hover{ text-decoration:underline; }
   margin-top:10px;
   padding:14px;
 
-  border:1px solid rgba(17,24,39,.08);
+  border:1px solid var(--border);
   border-radius:var(--radius);
 
   background:
-    radial-gradient(700px 260px at 20% 0%, rgba(43,95,255,.08), transparent 62%),
-    rgba(255,255,255,.90);
+    radial-gradient(720px 280px at 20% 0%, rgba(51,65,85,.10), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.92), rgba(241,243,246,.70));
 
   box-shadow:var(--shadow-sm);
 }
@@ -536,15 +476,12 @@ a:hover{ text-decoration:underline; }
 
 /* =========================================================
    14) フッター
-   ---------------------------------------------------------
-   フッターは主張しすぎない（情報だけ）
    ========================================================= */
 .footer{
   margin-top:78px;
   padding-top:18px;
-  border-top:1px solid rgba(17,24,39,.10);
+  border-top:1px solid rgba(15,23,42,.12);
 }
-
 .footer-row{
   display:flex;
   justify-content:space-between;
@@ -554,16 +491,11 @@ a:hover{ text-decoration:underline; }
 
 
 /* =========================================================
-   15) スマホ最適化（重要）
-   ---------------------------------------------------------
-   目的：
-   - ヘッダの文字切れをゼロにする
-   - ナビを押しやすくする
-   - ボタンは縦積み（親指に優しい）
+   15) スマホ最適化（文字切れゼロ＋押しやすい）
    ========================================================= */
 @media (max-width:600px){
 
-  /* ヘッダを2段化：横1行だと必ず詰まる */
+  /* ヘッダを2段化（横一行は必ず詰まる） */
   .topbar{
     flex-direction:column;
     align-items:stretch;
@@ -573,14 +505,14 @@ a:hover{ text-decoration:underline; }
     padding:12px 14px;
   }
 
-  /* 名前＋肩書きも縦並び（切れない） */
+  /* 名前＋肩書き：縦並び */
   .brand{
     flex-direction:column;
     align-items:flex-start;
     gap:2px;
   }
 
-  /* 省略（…）を無効化して全文表示 */
+  /* 省略（…）を無効化 */
   .brand-sub{
     white-space:normal;
     overflow:visible;
@@ -588,24 +520,21 @@ a:hover{ text-decoration:underline; }
     line-height:1.4;
   }
 
-  /* ナビ：3つを均等配置。押しやすい高さに */
+  /* ナビ：均等配置＋薄い面で押しやすく */
   .nav{
     justify-content:space-between;
     gap:8px;
   }
-
-  /* “ボタンっぽさ”は最低限の枠だけ（幼さ回避） */
   .nav a{
     flex:1;
     text-align:center;
     padding:8px 0;
     font-size:.90rem;
-    background:transparent;
-    border:1px solid rgba(17,24,39,.08);
+
+    background:rgba(15,23,42,.04);
+    border:1px solid rgba(15,23,42,.10);
   }
 
-  /* CTAボタン：横並びは押しづらいので縦積み */
-  .btn{
-    width:100%;
-  }
+  /* ボタン：縦積み */
+  .btn{ width:100%; }
 }
