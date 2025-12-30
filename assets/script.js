@@ -1,6 +1,6 @@
 const SITE_CONFIG = {
   // Googleフォーム / Tally / Formspree のURLに置き換え
-  contactFormUrl: "https://example.com"
+  contactFormUrl: "https://forms.gle/fhvTxKGk5k6yuoyJ9"
 };
 
 (function init() {
