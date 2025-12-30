@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RYOSUKE｜中小企業向けITコンサル（熊本）</title>
-  <meta name="description" content="業務やITが少し複雑になってきたときの整理役。熊本を拠点に中小企業向けITコンサルティングを行っています。">
+  <title>曽田｜中小企業向けITコンサル</title>
+  <meta name="description" content="熊本を拠点に中小企業向けITコンサルを実施しております。現場で小さく実証しながら状況を整理し、次のアクションが分かる状態を一緒につくります。">
 
+  <!-- CSS / JS（GitHub Pages構成に合わせた相対パス） -->
   <link rel="stylesheet" href="assets/style.css">
   <script defer src="assets/script.js"></script>
 </head>
@@ -13,13 +14,16 @@
 <body>
   <div class="container">
 
-    <!-- 上部ナビ（ここが無いと「ボタンがない」に見えがち） -->
+    <!-- =========================
+         Header
+         ========================= -->
     <header class="topbar">
       <div class="brand">
-        <a class="brand-link" href="./">RYOSUKE</a>
-        <span class="brand-sub">ITコンサル（熊本）</span>
+        <a class="brand-link" href="./">曽田</a>
+        <span class="brand-sub">ITコンサル</span>
       </div>
-      <nav class="nav">
+
+      <nav class="nav" aria-label="Primary navigation">
         <a href="./work/">案件</a>
         <a href="./portfolio/">ポートフォリオ</a>
         <a href="#contact">相談</a>
@@ -27,12 +31,17 @@
     </header>
 
     <main>
-      <!-- ヒーロー（3ボタン） -->
+
+      <!-- =========================
+           Hero
+           ========================= -->
       <section class="hero">
-        <h1 class="title">業務やITが少し複雑になってきたときの、整理役です。</h1>
+        <h1 class="title">曽田｜中小企業向けITコンサル</h1>
+
         <p class="lead">
-          熊本を拠点に、中小企業向けのITコンサルティングを行っています。<br>
-          まずは状況を整理して、「次に何をするか」を決めやすくします。
+          業務やITの話を、判断しやすい形に整理する仕事をしています。<br>
+          DXやITについて、現場で実証しながら進め方を考えたい方に向けて、<br>
+          「次に何をするか」が分かる状態を一緒につくります。
         </p>
 
         <div class="cta-row">
@@ -42,72 +51,217 @@
         </div>
       </section>
 
-      <section class="section" id="worries">
-        <h2 class="h2">こんな状態、ありませんか？</h2>
+      <!-- =========================
+           Trigger / Problems
+           ========================= -->
+      <section class="section" id="triggers">
+        <h2 class="h2">相談を受けるきっかけ</h2>
+
         <ul class="list">
-          <li>Excel・紙・口頭が混ざっていて、全体が見えにくい</li>
-          <li>ITツールを使っているが、設計に不安がある</li>
-          <li>新しい仕組みを検討しているが、判断材料が足りない</li>
-          <li>ベンダー提案をどう見ればいいか分からない</li>
-          <li>AIや自動化が気になるが、今やるべきか迷っている</li>
+          <li>方向性はあるが、現場の状況が整理できず「何から始めるか」決められない</li>
+          <li>ツール導入・AI活用の話が出ているが、論点や優先順位が曖昧</li>
+          <li>DXやITについて、現場で実証しながら進め方を考えたい</li>
         </ul>
-        <p class="text">ひとつでも当てはまれば、いきなり何かを決めなくても大丈夫です。</p>
+
+        <p class="text">
+          机上で決めきるより、まずは小さく試して、事実を集めて、次の判断につなげる。
+          そのための「状況整理」と「次の一手」を一緒に作ります。
+        </p>
       </section>
 
-      <section class="section" id="what">
-        <h2 class="h2">やっていること（ITの範囲）</h2>
+      <!-- =========================
+           Role / Value
+           ========================= -->
+      <section class="section" id="role">
+        <h2 class="h2">担っている役割</h2>
+
         <p class="text">
-          ITやデータ、ツールまわりを中心に状況を整理し、進め方を見える形にします。
+          ITコーディネータとして、経営の意図と現場の制約をつなぐ立場で関わります。<br>
+          アドバイスだけで終わらず、DXやITを現場で実証しながら整理を進めます。
+        </p>
+
+        <ul class="list">
+          <li>「経営として何を決めたいか」を、業務・ITの論点に落とし直す</li>
+          <li>現場の運用・技術的前提・データの持ち方を踏まえて整理する</li>
+          <li>判断材料と、具体的な次のアクション（小さな実証案）を形にする</li>
+        </ul>
+      </section>
+
+      <!-- =========================
+           What I can do (IT-focused)
+           ========================= -->
+      <section class="section" id="what">
+        <h2 class="h2">ITまわりでできること</h2>
+
+        <p class="text">
+          いきなり大きく変える前に、まずは短い単位で「成果物」と「次の一手」を作ります。
+          必要なら段階的に広げます。
         </p>
 
         <div class="grid-2">
           <div class="card">
-            <h3 class="h3">整理</h3>
-            <p class="text">業務の流れ・情報の持ち方・詰まりを、まず言葉と図にします。</p>
+            <h3 class="h3">状況整理（棚卸し）</h3>
+            <p class="text">業務フロー／情報の流れ／詰まりどころを、言葉と図で可視化します。</p>
           </div>
+
           <div class="card">
-            <h3 class="h3">設計</h3>
-            <p class="text">ツール選定やデータ項目など、あとで困りにくい形を作ります。</p>
+            <h3 class="h3">設計（項目・運用・役割）</h3>
+            <p class="text">データ項目、入力ルール、例外処理、役割分担を整えて“崩れにくく”します。</p>
           </div>
+
           <div class="card">
-            <h3 class="h3">レビュー</h3>
-            <p class="text">ベンダー提案や見積の内容を整理し、確認ポイントをまとめます。</p>
+            <h3 class="h3">小さな実証（PoC）</h3>
+            <p class="text">最小の検証で「効く/効かない」を見ます。実証の手順と評価観点を作ります。</p>
           </div>
+
           <div class="card">
-            <h3 class="h3">AI／自動化の可否</h3>
-            <p class="text">必要性と条件を整理して、選べる状態にします（必須ではありません）。</p>
+            <h3 class="h3">ツール選定・導入の進め方</h3>
+            <p class="text">導入ありきにせず、比較軸と進め方を整理します（必要なら伴走も可能）。</p>
           </div>
         </div>
 
-        <!-- 中段にもリンク入口を置く（ボタンが見つからない対策） -->
         <div class="link-cards">
           <a class="link-card" href="./work/">
             <div class="link-card-title">案件メニュー</div>
-            <div class="link-card-desc">単価と依頼の切り出し方</div>
+            <div class="link-card-desc">依頼の切り出し方・単価の目安</div>
           </a>
           <a class="link-card" href="./portfolio/">
             <div class="link-card-title">ポートフォリオ</div>
-            <div class="link-card-desc">実績・制作物・考え方</div>
+            <div class="link-card-desc">制作物・考え方（順次追加）</div>
           </a>
         </div>
       </section>
 
+      <!-- =========================
+           About
+           ========================= -->
+      <section class="section" id="about">
+        <h2 class="h2">自己紹介</h2>
+
+        <p class="text">
+          曽田です。熊本を拠点に、中小企業向けのITコンサルティングを行っています。<br>
+          現場の運用や技術的な前提を踏まえながら、意思決定に使える形へ整理することを大切にしています。<br>
+          技術的な検証や小さな実装も自分で行い、現実的な判断材料を作ります。
+        </p>
+
+        <ul class="list">
+          <li>拠点：熊本（全国オンライン対応可）</li>
+          <li>主な領域：業務整理／データ設計／ツール検討／小さな実証（PoC）</li>
+          <li>資格：ITコーディネータ／中小企業診断士／JDLA E資格（ほか）</li>
+        </ul>
+      </section>
+
+      <!-- =========================
+           Flow
+           ========================= -->
+      <section class="section" id="flow">
+        <h2 class="h2">進め方（例）</h2>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="h3">1. 30分相談（無料）</h3>
+            <p class="text">状況を伺い、論点の切り出しと「次に確認すべきこと」を整理します。</p>
+          </div>
+
+          <div class="card">
+            <h3 class="h3">2. 小さく着手（成果物を作る）</h3>
+            <p class="text">棚卸し・簡易設計・小さな実証案など、短い単位でアウトプットを作ります。</p>
+          </div>
+
+          <div class="card">
+            <h3 class="h3">3. 実証 → 判断 → 次の一手</h3>
+            <p class="text">試した結果を整理し、継続/変更/中止の判断材料と次アクションをまとめます。</p>
+          </div>
+
+          <div class="card">
+            <h3 class="h3">4. 必要なら拡張</h3>
+            <p class="text">優先順位が固まったら、設計・導入・定着まで段階的に進めます。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           Cases (Dummy)
+           ========================= -->
+      <section class="section" id="cases">
+        <h2 class="h2">案件例（ダミー／差し替え前提）</h2>
+
+        <p class="text">
+          依頼イメージを持ってもらうための例です。公開できる範囲で、今後差し替える想定です。
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="h3">現状整理 → 次の一手（最小の実証案）</h3>
+            <p class="text">
+              <strong>背景：</strong>紙・Excel・口頭が混在し、状況が追えない。<br>
+              <strong>やったこと：</strong>業務フローと情報の流れを整理し、詰まりの原因を特定。<br>
+              <strong>実証：</strong>管理項目を最小化して試運用（2週間）し、入力負荷と効果を確認。<br>
+              <strong>成果物：</strong>As-Is/To-Be、項目定義、次アクション（継続/改善ポイント）。
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="h3">データ項目・運用ルールの設計（崩れない形へ）</h3>
+            <p class="text">
+              <strong>背景：</strong>ツールはあるが入力が揃わず、集計・判断に使えない。<br>
+              <strong>やったこと：</strong>項目の意味を統一し、例外処理・責任分界を整理。<br>
+              <strong>実証：</strong>一部部署だけで運用を先に回し、ルールの詰まりを洗い出し。<br>
+              <strong>成果物：</strong>項目定義書、運用ルール、例外フロー、改善ToDo。
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="h3">AI／自動化の“当たり所”探索（小さく検証）</h3>
+            <p class="text">
+              <strong>背景：</strong>AIを使いたいが、効果が出る場所が分からない。<br>
+              <strong>やったこと：</strong>候補業務を洗い出し、入力・出力・制約を整理。<br>
+              <strong>実証：</strong>最小データで試し、精度・運用負荷・リスクを確認。<br>
+              <strong>成果物：</strong>候補リスト、検証計画、判断メモ（やる/やらない/保留）。
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="h3">ツール導入の進め方（導入前の段取り）</h3>
+            <p class="text">
+              <strong>背景：</strong>導入したいが、要件が曖昧で後戻りが不安。<br>
+              <strong>やったこと：</strong>目的・優先順位・最低限の要件を整理し、比較軸を作成。<br>
+              <strong>実証：</strong>小規模で触ってみて、運用イメージと制約を早期に確認。<br>
+              <strong>成果物：</strong>要件メモ、比較表、進め方（次アクションと役割分担）。
+            </p>
+          </div>
+        </div>
+
+        <p class="text">
+          単価や依頼の切り出し方は <a href="./work/">案件ページ</a> にまとめています。
+        </p>
+      </section>
+
+      <!-- =========================
+           Contact
+           ========================= -->
       <section class="section" id="contact">
         <h2 class="h2">相談</h2>
+
         <p class="text">
-          具体的でなくても大丈夫です。ITの話として整理できるかどうかを、一度見てみます。
+          内容が固まっていなくても大丈夫です。話を伺いながら状況を整理し、次のアクションを一緒に考えます。
         </p>
 
         <div class="contact-box">
+          <!-- TODO: 相談フォームのURLに差し替え（Googleフォーム等） -->
           <a class="btn btn-primary" id="contactLink" href="#" target="_blank" rel="noopener">相談フォームを開く</a>
-          <p class="fineprint">※フォームURLは後から差し替えできます</p>
+          <p class="fineprint">※フォームURLは後から差し替えできます（Googleフォーム等でOK）</p>
         </div>
       </section>
+
     </main>
 
+    <!-- =========================
+         Footer
+         ========================= -->
     <footer class="footer">
       <div class="footer-row">
-        <span class="fineprint">© RYOSUKE</span>
+        <span class="fineprint">© 曽田</span>
         <span class="fineprint"><a href="./work/">案件</a> / <a href="./portfolio/">ポートフォリオ</a></span>
       </div>
     </footer>
